@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from src.pipeline.predict_pipeline import CustomData,PredictPipeline
-
+import traceback
 
 application=Flask(__name__)
 app=application
@@ -33,7 +33,12 @@ def predict_datapoint():
         predict_pipeline=PredictPipeline()
         results=predict_pipeline.predict(pred_df)
         return render_template('home.html',results=results[0])
-    
+
+@app.errorhandler(Exception)
+def handle_exception(e):
+    print("Error Occured:")
+    traceback.print_exc()
+    return "Internal Server Error",500
 
 if __name__=='__main__':
     app.run(host="0.0.0.0",debug=False,port=8080)
