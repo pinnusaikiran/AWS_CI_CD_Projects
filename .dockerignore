@@ -1,0 +1,13 @@
+venv
+.git
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.csv
+*.ipynb
+.env
+data
+datasets
+models
